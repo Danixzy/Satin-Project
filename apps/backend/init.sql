@@ -1,0 +1,8 @@
+CREATE TABLE IF NOT EXISTS cartas (
+  id SERIAL PRIMARY KEY,
+  nome TEXT NOT NULL,
+  numero TEXT NOT NULL,
+  colecao TEXT NOT NULL,
+  imagem_url TEXT,
+  created_at TIMESTAMP NOT NULL DEFAULT NOW()
+);

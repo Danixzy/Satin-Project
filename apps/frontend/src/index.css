@@ -1,0 +1,68 @@
+.pagina-lista__cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.botao-criar {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+}
+
+.grade-cartas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+.card-item {
+  position: relative;
+}
+
+.card-item__botao {
+  width: 100%;
+  display: block;
+  text-align: left;
+}
+
+.card-item__imagem {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  display: block;
+}
+
+.card-item__info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-item__menu {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.card-item__menu-opcao {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
+.formulario-carta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 400px;
+}
+
+.formulario-carta label {
+  display: flex;
+  flex-direction: column;
+}
+
+.formulario-carta__acoes {
+  display: flex;
+  gap: 8px;
+}
