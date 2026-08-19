@@ -27,6 +27,13 @@ Contrato de API completo (de `plan.md`, seção 4) — os 5 endpoints já existe
 3. Criar `apps/frontend/src/pages/ListaCartas.tsx`: busca `listarCartas()` no mount, renderiza a grade de `CardItem`, botão "Criar Carta" no canto superior direito, trata estado vazio. Implementa a exclusão de verdade: confirmação + `excluirCarta(id)` + remove do estado local no sucesso.
 4. Criar `apps/frontend/src/pages/FormularioCarta.tsx`: detecta modo criação/edição pelo `:id` da rota (`useParams`), pré-preenche via `buscarCarta` quando em edição, valida campos obrigatórios no cliente, salva via `criarCarta`/`atualizarCarta` e redireciona pra `/` no sucesso.
 5. Configurar `apps/frontend/src/App.tsx` com as 3 rotas da tabela acima via `react-router-dom`.
+6. Estilizar em `apps/frontend/src/index.css` (CSS puro — sem adicionar biblioteca de UI, isso não está em `plan.md` seção 1). Não é só "fazer funcionar", é fazer parecer um produto de verdade:
+   - Paleta consistente via CSS custom properties em `:root` (fundo, superfície, texto, cor primária, cor de perigo pra excluir).
+   - Cards da listagem com sombra sutil, cantos arredondados, leve elevação no hover (`transform` + `box-shadow`), área de imagem com `object-fit: cover` e placeholder visualmente distinto quando `imagem_url` for vazio.
+   - Popover de Editar/Excluir como um menu flutuante de verdade (posicionado com `position: absolute`, sombra, bordas arredondadas), não uma lista crua — "Excluir" com cor de perigo pra se diferenciar de "Editar".
+   - Botão "Criar Carta" fixo no canto superior direito com destaque visual (cor primária, formato de pill/botão, sombra) — ele é o CTA principal da tela.
+   - Formulário como um cartão centralizado (não os campos soltos na página), inputs com padding generoso e estado de foco visível, botão de salvar com a mesma cor primária dos outros CTAs.
+   - Não adicionar elementos de UI que não estão no fluxo do `spec.md` (ex: botão de cancelar, breadcrumbs) — o objetivo é deixar bonito o que já existe, não adicionar fluxo novo.
 
 ## Arquivos esperados
 
@@ -35,6 +42,7 @@ Contrato de API completo (de `plan.md`, seção 4) — os 5 endpoints já existe
 - `apps/frontend/src/pages/ListaCartas.tsx`
 - `apps/frontend/src/pages/FormularioCarta.tsx`
 - `apps/frontend/src/App.tsx`
+- `apps/frontend/src/index.css` (estilo de toda a feature)
 
 ## Como usar este arquivo
 

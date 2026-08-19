@@ -14,3 +14,7 @@
 ## Divergências recorrentes observadas
 
 _(preencher conforme as revisões acontecerem — ex: campos que a IA tende a inventar, padrões que ela quebra da segunda ocorrência em diante)_
+
+## Outros tópicos
+
+- [Checklist de revisão de scaffold](padrao-scaffold.md) — o que checar (e o que não cobrar) numa task de setup/scaffold, antes de código de negócio existir

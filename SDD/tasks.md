@@ -6,9 +6,10 @@
 >
 > Um repositório git só (a raiz do workspace, entregue pro professor): `apps/backend` e `apps/frontend` são subpastas, não repositórios separados (ver `plan.md` seção 2). Cada uma continua deployada como app CapRover independente via CLI.
 
-- [ ] **Tarefa 1 — Setup do projeto** (`SDD/prompts/01-setup.md`): `git init` na raiz, `.gitignore`, scaffold de `apps/backend/` e `apps/frontend/`, `init.sql`.
-- [ ] **Tarefa 2 — Backend completo** (`SDD/prompts/02-backend-api.md`): `db.js`, os 5 endpoints REST de `/api/cartas`, `server.js` (com CORS).
-- [ ] **Tarefa 3 — Frontend completo** (`SDD/prompts/03-frontend.md`): cliente de API, `CardItem`, `ListaCartas`, `FormularioCarta`, rotas — termina rodando tudo em localhost e validando os critérios de aceite.
+- [x] **Tarefa 1 — Setup do projeto** (`SDD/prompts/01-setup.md`): `git init` na raiz, `.gitignore`, scaffold de `apps/backend/` e `apps/frontend/`, `init.sql`.
+- [x] **Tarefa 2 — Backend completo** (`SDD/prompts/02-backend-api.md`): `db.js`, os 5 endpoints REST de `/api/cartas`, `server.js` (com CORS).
+- [x] **Tarefa 3 — Frontend completo** (`SDD/prompts/03-frontend.md`): cliente de API, `CardItem`, `ListaCartas`, `FormularioCarta`, rotas — termina rodando tudo em localhost e validando os critérios de aceite.
+- [x] **Tarefa 4 — Revisão final** (`SDD/prompts/04-revisao.md`): roda o subagente `revisor-sdd` sobre `apps/backend/` e `apps/frontend/` completos, checando também item a item os critérios de aceite de `spec.md` seção 6. Relatório em `relatorios/revisao-final-tarefa4.md`.
 
 Isso é a branch `main` (implementação com contexto completo). Ver `plan.md` seção 2 pra estratégia de branches caso rode a mesma feature de novo (contexto mínimo, ou modelo diferente).
 
