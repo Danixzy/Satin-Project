@@ -60,18 +60,7 @@ Procedimento planejado em [`SDD/teste-curadoria-contexto.md`](SDD/teste-curadori
 - **Tentativa 1 (contexto mínimo, branch `sem-contexto`):** chat novo, sem `CLAUDE.md`, sem `SDD/plan.md`, sem os exemplos few-shot já implementados no projeto e sem o subagente `revisor-sdd` checando o resultado. Diferente do plano original (prompt curto deixando a IA inventar os campos sozinha), o prompt colou o **texto completo da especificação funcional** (o mesmo conteúdo de `SDD/spec.md`) direto no chat — sem carregar mais nada do projeto real. Isso testa uma variação mais realista do requisito 3: "colar a spec inteira crua, sem o resto do projeto" vs. "contexto curado e carregado como convenção do projeto" (mesma spec nos dois casos, arquitetura/ferramental diferente).
 - **Tentativa 2 (pacote completo, branch `contexto`, é a implementação principal do repositório):** Tarefas 1-4, guiadas por `SDD/spec.md` + `SDD/plan.md`, `CLAUDE.md` carregado, few-shot entre chamadas (seção 3) e revisão automática pelo `revisor-sdd` ao final.
 
-**O que divergiu de verdade** (como a spec completa foi colada nos dois casos, os campos/rotas bateram nos dois — `nome`, `numero`, `colecao`, `imagem_url`, `/api/cartas`; a divergência apareceu em decisão que a spec **não** cobre, exatamente onde a regra 4 do system prompt deveria atuar):
-
-| | Tentativa 1 (sem contexto) | Tentativa 2 (com contexto) |
-|---|---|---|
-| Chave de erro da API | `{ error: '...' }` (inglês) | `{ erro: '...' }` (português — padrão do 1º endpoint, replicado via few-shot) |
-| Nome da função de editar (frontend) | `editarCarta` | `atualizarCarta` |
-| Como o popover Editar/Excluir fecha ao clicar fora | `useRef` + listener de `mousedown` no `document` | `e.stopPropagation()` nos itens do menu (mais simples) |
-| Design visual da tela | nasceu funcional e razoável; a pedido, foi deliberadamente reduzido a HTML quase cru (só o posicionamento exigido pela spec — botão fixo, grade, popover no lugar certo) pra ilustrar visualmente o efeito de não ter um design system pra seguir | nasceu com um design system completo (tokens de cor, sombra, transição) porque isso fazia parte do "exemplo" que as chamadas seguintes replicaram |
-| Rede de segurança pós-implementação | nenhuma — não existe um `revisor-sdd` conferindo contra a spec numa sessão sem esse ferramental | `revisor-sdd` roda ao final de cada tarefa |
-| Custo real (via `/cost`) | **US$ 2,28** | **US$ 9,70** (só as Tarefas 1-4; ver seção 5) |
-
-**Conclusão:** com a spec inteira colada no prompt, a IA não inventa campo/rota — isso a spec resolve sozinha. O que se perde sem o contexto do projeto real é justamente o que `INSTRUCOES-TRABALHO.md` seção 2 avisa: **consistência com o resto do sistema**. Numa chamada isolada, cada detalhe não coberto pela spec (nome de função, idioma da chave de erro, abordagem técnica de UI, nível de acabamento visual) é decidido do zero e independente — em um projeto real com múltiplos endpoints/telas, isso vira inconsistência de estilo acumulada entre arquivos, exatamente o risco que a regra 4 do system prompt (seção 3, few-shot) existe pra mitigar. Custo é outra consequência direta: a Tentativa 1 saiu ~4,3x mais barata porque foi uma tacada única sem estrutura, review ou iteração orientada por spec/plan — barato, mas sem nenhuma garantia de coerência com o projeto real, só com a spec isolada.
+**Conclusão:** com a spec inteira colada no prompt, a IA não inventa campo/rota — isso a spec resolve sozinha. O que se perde sem o contexto do projeto real é justamente o que `INSTRUCOES-TRABALHO.md` seção 2 avisa: **consistência com o resto do sistema**. Numa chamada isolada, cada detalhe não coberto pela spec (nome de função, idioma da chave de erro, abordagem técnica de UI, nível de acabamento visual) é decidido do zero e independente — em um projeto real com múltiplos endpoints/telas, isso vira inconsistência de estilo acumulada entre arquivos, exatamente o risco que a regra 4 do system prompt (seção 3, few-shot) existe pra mitigar. Custo é outra consequência direta: a Tentativa 1 saiu mais barata porque foi uma tacada única sem estrutura, review ou iteração orientada por spec/plan — barato, mas sem nenhuma garantia de coerência com o projeto real, só com a spec isolada.
 
 Evidência de custo — ver seção 6.
 
@@ -100,11 +89,11 @@ Print do `/cost` do Claude Code, um por branch/experimento, comprovando os núme
 
 **Tarefas 1-4, branch `contexto`** — US$ 9,70, sonnet-5 com 12,9k tokens frescos de entrada, 131,7k de saída, 18,4M de cache lido, 404,1k de cache escrito:
 
-![Custo da implementação com contexto (Tarefas 1-4)](relatorios/custo_implementacao_contexto.png)
+![Custo da implementação com contexto (Tarefas 1-4)](custo_implementacao_contexto.png)
 
 **Tentativa 1, branch `sem-contexto`** — US$ 2,28, sonnet-5 com 3,2k tokens frescos de entrada, 29,5k de saída, 4,9M de cache lido, 61,4k de cache escrito:
 
-![Custo da implementação sem contexto (Tentativa 1)](relatorios/custo_implementacao_sem_contexto.png)
+![Custo da implementação sem contexto (Tentativa 1)](custo_implementacao_sem_contexto.png)
 
 ## 7. URL publicada — **PENDENTE**
 
