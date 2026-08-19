@@ -1,6 +1,6 @@
 # Gestão de Cartas — Trabalho Prático 1 (Tecnologias Emergentes)
 
-> Preenchido na ordem exigida por `SDD/docs/INSTRUCOES-TRABALHO.md` seção 8. Item marcado como **PENDENTE** ainda falta (deploy) — o restante está completo. Todo item marcado "com evidências" precisa de print de tela antes da entrega final; texto sozinho não vale como evidência.
+> Preenchido na ordem exigida por `SDD/docs/INSTRUCOES-TRABALHO.md` seção 8. Todo item marcado "com evidências" precisa de print de tela antes da entrega final; texto sozinho não vale como evidência.
 
 ## 1. O que o projeto faz
 
@@ -95,11 +95,14 @@ Print do `/cost` do Claude Code, um por branch/experimento, comprovando os núme
 
 ![Custo da implementação sem contexto (Tentativa 1)](custo_implementacao_sem_contexto.png)
 
-## 7. URL publicada — **PENDENTE**
+## 7. URL publicada
 
-Deploy no CapRover ainda não foi feito (dois apps separados — `backend` e `frontend`, via CapRover CLI de dentro de cada subpasta, ver `SDD/plan.md` seção 6). A URL que vai aqui é a do app `frontend`, que consome o `backend` por trás.
+Deploy feito no CapRover (self-hosted) — 4 apps (um par backend/frontend por branch), via CapRover CLI rodada de dentro de cada subpasta/branch (`SDD/plan.md` seção 6). Os dois backends apontam pra mesma instância de Postgres (one-click app `postgres-db` do próprio CapRover).
 
-`[URL PENDENTE]`
+- **Com contexto** (branch `contexto`, Tarefas 1-4, implementação principal): **https://cartas-frontend-contexto.elidanbi.com.br/**
+- **Sem contexto** (branch `sem-contexto`, Tentativa 1, seção 4): **https://cartas-frontend-sem-contexto.elidanbi.com.br/**
+
+Cada frontend consome seu próprio backend (`cartas-backend-contexto.elidanbi.com.br` / `cartas-backend-sem-contexto.elidanbi.com.br`), publicado também pelo CapRover.
 
 ## 8. Alunos participantes
 
